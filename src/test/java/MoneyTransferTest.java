@@ -1,10 +1,7 @@
 
 import lombok.val;
 import org.junit.jupiter.api.Test;
-import ru.netology.data.CardBalanceAddPage;
-import ru.netology.data.DataHelper;
-import ru.netology.data.LoginPage;
-import ru.netology.data.PersonalAccountPage;
+import ru.netology.data.*;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,12 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MoneyTransferTest {
     @Test
      void ShouldTransferMoneyBetweenOwnCardsFromSecondToFirst() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
-        val authInfo = DataHelper.getAuthInfo();
-        val verificationPage = loginPage.validLogin(authInfo);
-        val verificationCode = DataHelper.getVerificationCode(authInfo);
-        verificationPage.validVerify(verificationCode);
+        TestHelper.openPage();
+        TestHelper.sendLogin();
         val personalAccount = new PersonalAccountPage();
         val cardInfo = DataHelper.getCardInfo2();
         int firstBalance = DataHelper.getBalance();
@@ -30,12 +23,8 @@ public class MoneyTransferTest {
     }
     @Test
     void ShouldTransferMoneyBetweenOwnCardsFromFirstToSecond() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
-        val authInfo = DataHelper.getAuthInfo();
-        val verificationPage = loginPage.validLogin(authInfo);
-        val verificationCode = DataHelper.getVerificationCode(authInfo);
-        verificationPage.validVerify(verificationCode);
+        TestHelper.openPage();
+        TestHelper.sendLogin();
         val personalAccount = new PersonalAccountPage();
         val cardInfo = DataHelper.getCardInfo1();
         int firstBalance = DataHelper.getOtherBalance();
@@ -48,12 +37,8 @@ public class MoneyTransferTest {
     }
     @Test
     void ShouldShowErrorWhenFieldIsEmpty() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
-        val authInfo = DataHelper.getAuthInfo();
-        val verificationPage = loginPage.validLogin(authInfo);
-        val verificationCode = DataHelper.getVerificationCode(authInfo);
-        verificationPage.validVerify(verificationCode);
+        TestHelper.openPage();
+        TestHelper.sendLogin();
         val personalAccount = new PersonalAccountPage();
         val cardInfo = DataHelper.getCardInfo1();
         personalAccount.validDeposit2();
@@ -63,12 +48,8 @@ public class MoneyTransferTest {
     }
     @Test
     void ShouldTransferMoneyNotIntegerBetweenOwnCardsFromFirstToSecond() {
-        open("http://localhost:9999");
-        val loginPage = new LoginPage();
-        val authInfo = DataHelper.getAuthInfo();
-        val verificationPage = loginPage.validLogin(authInfo);
-        val verificationCode = DataHelper.getVerificationCode(authInfo);
-        verificationPage.validVerify(verificationCode);
+        TestHelper.openPage();
+        TestHelper.sendLogin();
         val personalAccount = new PersonalAccountPage();
         val cardInfo = DataHelper.getCardInfo1();
         int firstBalance = DataHelper.getOtherBalance();
